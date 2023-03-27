@@ -6,6 +6,10 @@ import java.io.IOException;
 import java.util.HashMap;
 import java.util.Map;
 
+/*Пусть дан список сотрудников: Написать программу, которая найдет и выведет повторяющиеся
+имена с количеством повторений.
+Отсортировать по убыванию популярности Имени. */
+
 public class Ex2 {
     public static String fileReader(String path) {
         StringBuilder sb = new StringBuilder();

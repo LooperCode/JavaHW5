@@ -3,6 +3,9 @@ import java.util.HashMap;
 import java.util.Scanner;
 import java.util.Map;
 
+/*Реализуйте структуру телефонной книги с помощью HashMap, учитывая,
+что 1 человек может иметь несколько телефонов.*/
+
 public class Ex1 {
     public static Map<String, String> dictionary(Map<String, String> map) {
 
