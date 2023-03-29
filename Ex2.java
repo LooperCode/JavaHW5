@@ -26,8 +26,7 @@ public class Ex2 {
     }
 
     public static String[] getArray(String input) {
-        String[] array = input.split(";| ");
-        return array;
+        return input.split(";| ");
     }
 
     public static String topName(String path) {
@@ -35,7 +34,7 @@ public class Ex2 {
         String[] arr = getArray(inputTxt);
         Map<String, Integer> map = new HashMap<>();
         StringBuilder sb = new StringBuilder();
-        int max = 1;
+        int max = 0;
         for (int i = 0; i < arr.length; i += 2) {
             if (map.containsKey(arr[i])) {
                 map.put(arr[i], map.get(arr[i]) + 1);
@@ -44,13 +43,13 @@ public class Ex2 {
                     max = map.get(arr[i]);
                 }
             }
-            map.putIfAbsent(arr[i], 1);
+            map.putIfAbsent(arr[i], 0);
         }
         max += 1;
         while (max > 0) {
             max--;
             for (Map.Entry<String, Integer> entry : map.entrySet()) {
-                if (entry.getValue() > 1) {
+                if (entry.getValue() > 0) {
                     if (entry.getValue() == max) {
                         sb.append("Имя: ").append(entry.getKey()).append(", ");
                         sb.append("Количество повторений: ").append(entry.getValue()).append("\n");
