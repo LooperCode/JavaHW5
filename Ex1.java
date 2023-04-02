@@ -7,7 +7,7 @@ import java.util.Map;
 что 1 человек может иметь несколько телефонов.*/
 
 public class Ex1 {
-    public static Map<String, String> dictionary(Map<String, String> map) {
+    public static void dictionary(Map<String, String> map) {
 
         Scanner sc = new Scanner(System.in);
         System.out.println("Enter a name: ");
@@ -18,7 +18,6 @@ public class Ex1 {
             map.put(name, map.get(name) + ';' + number);
             }
         map.putIfAbsent(name, number);
-        return map;
     }
 
     public static void printDict(Map<String, String> dict) {

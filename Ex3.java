@@ -9,20 +9,64 @@ package JavaHW5;
 
 public class Ex3 {
     public static void getPos(String[][] chsBoard) {
-
-        //int i = 1;
         int random = (int) (Math.random() * chsBoard.length);
-        int tmp = random;
         chsBoard[0][random] = "X";
         for (int i = 1; i < chsBoard.length; i++) {
             random = (int) (Math.random() * chsBoard.length);
-            while (tmp + 1 == random || tmp - 1 == random || tmp == random) {
+            int count = chsBoard.length - 1;
+            while (checkLeft(chsBoard, random, i) || checkRight(chsBoard, random, i) || checkFront(chsBoard, random, i)) {
                 random = (int) (Math.random() * chsBoard.length);
-
+                count--;
+                if (count < 0) {
+                    clearPreStep(chsBoard, i - 1);
+                    i--;
+                }
             }
             chsBoard[i][random] = "X";
-            tmp = random;
         }
+    }
+
+    public static void clearPreStep(String[][] chsBoard, int preRow) {
+        for (int i = 0; i < chsBoard.length; i++) {
+
+            chsBoard[preRow][i] = null;
+        }
+    }
+
+    public static Boolean checkRight(String[][] chsBoard, int posRight, int index) {
+
+        for (int row = index - 1; row >= 0; row--) {
+            if (posRight < chsBoard.length - 1) {
+                posRight += 1;
+                if (chsBoard[row][posRight] != null) {
+                    return true;
+                }
+            }
+        }
+        return false;
+    }
+
+    public static Boolean checkLeft(String[][] chsBoard, int posLeft, int index) {
+
+        for (int row = index - 1; row >= 0; row--) {
+            if (posLeft > 0) {
+                posLeft -= 1;
+                if (chsBoard[row][posLeft] != null) {
+                    return true;
+                }
+            }
+        }
+        return false;
+    }
+
+    public static Boolean checkFront(String[][] chsBoard, int posFront, int index) {
+
+        for (int row = index - 1; row >= 0; row--) {
+            if (chsBoard[row][posFront] != null) {
+                return true;
+            }
+        }
+        return false;
     }
 
     public static void printArray(String[][] board) {
@@ -39,7 +83,7 @@ public class Ex3 {
     }
 
     public static void main(String[] args) {
-        String[] ChessBoard[] = new String[8][8];
+        String[][] ChessBoard = new String[8][8];
         getPos(ChessBoard);
         printArray(ChessBoard);
 
