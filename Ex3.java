@@ -7,6 +7,8 @@ package JavaHW5;
 0000x000
 00x00000  */
 
+import java.util.Objects;
+
 public class Ex3 {
     public static void getPos(String[][] chsBoard) {
 
@@ -72,18 +74,13 @@ public class Ex3 {
 
     public static void printArray(String[][] board) {
 
-        for (int i = 0; i < board.length; i++) {
-            for (int j = 0; j < board.length; j++) {
-                if (board[i][j] == null) {
-                    board[i][j] = "0";
-                }
-                System.out.print(board[i][j] + " ");
+        for (String[] strings : board) {
+            for (String col : strings) {
+                System.out.print(Objects.requireNonNullElse(col, "0") + " ");
             }
-
             System.out.println();
         }
     }
-
     public static void main(String[] args) {
         String[][] ChessBoard = new String[8][8];
         getPos(ChessBoard);
