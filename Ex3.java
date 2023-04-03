@@ -14,18 +14,18 @@ public class Ex3 {
 
         int random = (int) (Math.random() * chsBoard.length);
         chsBoard[0][random] = "X";
-        for (int i = 1; i < chsBoard.length; i++) {
+        for (int row = 1; row < chsBoard.length; row++) {
             random = (int) (Math.random() * chsBoard.length);
             int count = chsBoard.length - 1;
-            while (checkLeft(chsBoard, random, i) || checkRight(chsBoard, random, i) || checkFront(chsBoard, random, i)) {
+            while (checkLeft(chsBoard, random, row) || checkRight(chsBoard, random, row) || checkFront(chsBoard, random, row)) {
                 random = (int) (Math.random() * chsBoard.length);
                 count--;
                 if (count < 0) {
-                    clearPreStep(chsBoard, i - 1);
-                    i--;
+                    clearPreStep(chsBoard, row - 1);
+                    row--;
                 }
             }
-            chsBoard[i][random] = "X";
+            chsBoard[row][random] = "X";
         }
     }
 
@@ -74,8 +74,8 @@ public class Ex3 {
 
     public static void printArray(String[][] board) {
 
-        for (String[] strings : board) {
-            for (String col : strings) {
+        for (String[] row : board) {
+            for (String col : row) {
                 System.out.print(Objects.requireNonNullElse(col, "0") + " ");
             }
             System.out.println();
